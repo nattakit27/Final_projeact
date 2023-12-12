@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>API</title>
+
+</head>
+
+<style>
+  .box {
+    padding: 20px;
+    text-align: center;
+    width: 40%;
+    margin: 40px auto;
+    border-radius: 10px;
+    background-color:deepskyblue;
+    box-sizing: content-box;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  .box2 {
+    padding: 50px;
+    text-align: center;
+    width: 40%;
+    margin: 40px auto;
+
+  }
+
+</style>
+
+<body>
+
+  <div class="w3-top">
+    <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+      <a href="./home.html" class="w3-bar-item w3-button"><b>HOME</b></a>
+      <!-- Float links to the right. Hide them on small screens -->
+      <div class="w3-right w3-hide-small">
+        <a href="index.html" class="w3-bar-item w3-button">PROFILE</a>
+        <a href="java.html" class="w3-bar-item w3-button">JAVA</a>
+        <a href="api.html" class="w3-bar-item w3-button">API</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="w3-content w3-padding-64 w3-margin-top" style="max-width:1564px">
+
+    <h1>API</h1>
+
+    <div class="box">
+      <h1>Nationalize API</h1>
+    <form id="nameForm">
+        <label for="name">Enter your name:</label>
+        <input type="text" id="name" name="name" required>
+        <button type="button" onclick="getchNationality()">Submit</button>
+    </form>
+    <div id="result"></div>
+    </div>
+
+    <div class="box">
+      <h1>Random Text</h1>
+      <p id="demo2">start</p>
+      <button onclick="myFunction()">Click me</button>        
+  </div>
+
+
+  <div class="box">
+    <h1>Form</h1>
+    <form method="POST"
+      action="https://script.google.com/macros/s/AKfycbySLcDa9ThHCVG6DVoGxNzQC65P-S32KDZ1XxUCNnrCA0n69CmXxWrcJNu6T7aG_C8X/exec">
+      <input Name="Email" type="email" placeholder="Email" required>
+      <input Name="Name" type="text" placeholder="Name" required>
+      <button type="submit">Send</button>
+    </form><br>
+  </div>
+
+
+<div class="box">
+<h1>Coinbase API</h1>
+<div id="lastUpdateTime"></div>
+<div id="prices"></div>
+</div>
+
+
+<div class="box2">
+  <iframe width="100%" height="300px"
+    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSf0cwnCVsB4eOZsHQ4e6R9P-4ruong-s3wQ1XWE1YDSz2HylR0J58oacdagvk4t-41LOmyBZak68Ub/pubchart?oid=1459213772&format=interactive"width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade" width="600" height="450" style="border:0;" allowfullscreen=""
+    loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+
+<div class="box">
+  <iframe width="100%" height="500"
+    src="https://docs.google.com/spreadsheets/d/1JN1n0lI2zoMJIxunJ8DU3EgPP2w3i-iFlK0yns2ugWM/edit?usp=sharing"></iframe>
+</div>
+
+<div class="box">
+  <iframe class="map"
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1915.6912736138597!2d103.26980358891787!3d16.2007614116002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3122a6ae121c1c2f%3A0x626cae9fcd86bf3d!2z4Lih4Lir4Liy4Lin4Li04LiX4Lii4Liy4Lil4Lix4Lii4Lij4Liy4LiK4Lig4Lix4LiP4Lih4Lir4Liy4Liq4Liy4Lij4LiE4Liy4Lih!5e0!3m2!1sth!2sth!4v1701844095448!5m2!1sth!2sth"
+    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade" width="600" height="450" style="border:0;" allowfullscreen=""
+    loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><br><br>
+</div>
+  
+
+
+  <div class="w3-center w3-padding-24">
+    <table id="btc_table"> </table>
+  </div>
+
+  </div>
+
+<!-- ------------------------------------------------------------------------ -->
+  <script>
+   function myFunction() {
+        fetch("https://catfact.ninja/fact")
+          .then(function(response){
+            return response.json()
+          })
+          .then(function(data){
+            let txt = "";
+              for (let x in data) {
+                txt += data[x] + " ";
+              document.getElementById("demo2").innerHTML = txt;
+              };
+          
+            return data;
+          })  
+    }
+        </script>
+
+<!-- ------------------------------------------------------------------------ -->
+        <script>
+    function BTC() {
+      fetch("https://api.coinbase.com/v2/exchange-rates?currency=BTC")
+        .then((response) => response.json())
+        .then((data) => {
+          const rates = data.data.rates;
+          let table =
+            '<table border="1"><h1>Exchange Rates for BTC</h1><tr><th>Currency</th><th>Rate</th></tr>';
+          let count = 0;
+          for (const currency in rates) {
+            if (rates.hasOwnProperty(currency)) {
+              table += <tr><td>${currency}</td><td>${rates[currency]}</td></tr>;
+              count++;
+              if (count === 20) {
+                break;
+              }
+            }
+          }
+
+          table += "</table>";
+          document.getElementById("btc_table").innerHTML = table;
+        })
+        .catch((error) => console.error("Error fetching data:", error));
+    }
+    setInterval(BTC, 3000);
+    BTC();
+  </script>
+
+<!-- ------------------------------------------------------------------------ -->
+<script>
+  function getchNationality() {
+      var name = document.getElementById('name').value;
+      if (name.trim() === "") {
+          alert("Please enter a name");
+          return;
+      }
+
+      fetch(`https://api.nationalize.io?name=${name}`)
+          .then(response => response.json())
+          .then(data => {
+              displayResult(data);
+          })
+          .catch(error => {
+              console.error('Error fetching data:', error);
+              alert('Error fetching data. Please try again.');
+          });
+  }
+
+  function displayResult(data) {
+      var resultDiv = document.getElementById('result');
+      var countryData = data.country[0];
+
+      if (countryData) {
+          var countryId = countryData.country_id;
+          var probability = (countryData.probability * 100).toFixed(2);
+          resultDiv.innerHTML = `<p>Your most likely country is ${countryId} with a probability of ${probability}%.</p>`;
+      } else {
+          resultDiv.innerHTML = "<p>No data available for the provided name.</p>";
+      }
+  }
+</script>
+
+<!-- ------------------------------------------------------------------------ -->
+<script>
+  function fetchPrices() {
+      var now = new Date();
+      var currentTime = now.toLocaleTimeString();
+
+      fetch('https://api.coinbase.com/v2/exchange-rates?currency=USDT')
+          .then(response => response.json())
+          .then(data => {
+              displayPrices(data);
+              displayLastUpdateTime(currentTime);
+          })
+          .catch(error => {
+              console.error('Error fetching data:', error);
+              alert('Error fetching data. Please try again.');
+          });
+  }
+  function displayPrices(data) {
+      var pricesDiv = document.getElementById('prices');
+      var rates = data.data.rates;
+
+      var currencies = ['1INCH', 'AAVE', 'ABT', 'ACH', 'ACS', 'ADA', 'AED', 'BTC', 'ETH'];
+      var pricesHtml = '<p>1 USDT can buy:</p><ul>';
+
+      currencies.forEach(currency => {
+          if (rates[currency]) {
+              pricesHtml += `<li>${currency}: ${rates[currency]}</li>`;
+          } else {
+              pricesHtml += `<li>${currency}: N/A</li>`;
+          }
+      });
+
+      pricesHtml += '</ul>';
+      pricesDiv.innerHTML = pricesHtml;
+  }
+
+  function displayLastUpdateTime(currentTime) {
+      var updateTimeDiv = document.getElementById('lastUpdateTime');
+      updateTimeDiv.innerHTML = `<p>Last Update Time: ${currentTime}</p>`;
+  }
+
+  fetchPrices();
+
+  setInterval(fetchPrices, 3000);
+</script>
+  <!-- Page content -->
+
+  <!-- Footer -->
+  <footer class="w3-center w3-black w3-padding-16">
+    <p>By NATTAKIT PHAYAO.</p>
+    <a href="https://www.facebook.com/profile.php?id=100025068803816"><i class="fa fa-facebook-official w3-hover-opacity"></i></a>
+    <a href="https://www.instagram.com/zj_xxvii/"><i class="fa fa-instagram w3-hover-opacity"></i></a>
+  </footer>
+
+  </script>
+</body>
+
+</html>

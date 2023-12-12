@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>JAVA</title>
+
+<style>
+  .box {
+      padding: 20px;
+      text-align: center;
+      width: 40%;
+      margin: 40px auto;
+      border-radius: 10px;
+      background-color:crimson;
+      color: white;
+      box-sizing: content-box;
+    }
+    h1 {
+      text-align: center;
+    }
+
+    .box2 {
+      padding: 20px;
+      text-align: center;
+      width: 40%;
+      margin: 40px auto;
+      border-radius: 10px;
+      background-color:white;
+      box-sizing: content-box;
+    }
+</style>
+</head>
+
+<body>
+
+
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+      <a href="./home.html" class="w3-bar-item w3-button"><b>HOME</b></a>
+      <!-- Float links to the right. Hide them on small screens -->
+      <div class="w3-right w3-hide-small">
+          <a href="index.html" class="w3-bar-item w3-button">PROFILE</a>
+          <a href="java.html" class="w3-bar-item w3-button">JAVA</a>
+          <a href="api.html" class="w3-bar-item w3-button">API</a>
+      </div>
+  </div>
+</div>
+
+
+<div class="w3-content w3-padding-64 w3-margin-top" style="max-width:1564px">
+
+<h1>JAVA</h1>
+
+<div class="box">
+  <div class="w3-container">
+    <h5>หาความยาวเส้นทแยงมุมของสี่เหลี่ยมผืนผ้า</h5>
+  </div>
+  <div class="w3-row-padding">
+    <input type="number" id="sideA" placeholder="Length"><br><br>
+    <input type="number" id="sideB" placeholder="Height"><br><br>
+    <button onclick="calculateDiagonal()">คำนวณ</button><br>
+    <p class="resultButton" id="result"></p>
+  </div>
+</div>
+
+<div class="box">
+  <h5>สุ่มตัวเลขในลูกเต๋า ผลลัพธ์ต้องเป็นตัวเลขจำนวณเต็มตั้งแต่ 1-10</h5>
+  <button onclick="rollDice()">สุ่มลูกเต๋า</button><br>
+  <p class="resultButton" id="resultContainer"></p>
+</div>
+
+<div class="box">
+  <h5 for="numberOfDays">แปลงจำนวนวันเป็นวินาที</h5>
+  <input type="number" id="numberOfDays"><br><br>
+  <button onclick="convertDaysToSeconds()">คำนวณ</button>
+  <div class="resultButton" id="resultCon"></div>
+</div>
+
+<div class="box">
+  <h5 for="fahrenheitInput">แปลงอุณภูมิจาก farenheit เป็น celsius</h5>
+  <input type="number" id="fahrenheitInput"><br><br>
+  <button onclick="convertToFahrenheit()">คำนวณ</button><br>
+  <p class="resultButton" id="resultA"></p>
+</div>
+
+<div class="box">
+  <h5 for="numberInput">คำนวนค่า factorial</h5>
+  <input type="number" id="numberInput"><br><br>
+  <button onclick="calculateFactorial()">คำนวณ</button><br>
+  <div class="resultButton" id="resultf"></div>
+</div>
+
+<script src="#"></script>
+
+<script>
+  // หาความยาวเส้นทแยงมุมของสี่เหลี่ยมผืนผ้า
+  function calculateDiagonal() {
+    var sideA = parseFloat(document.getElementById('sideA').value);
+    var sideB = parseFloat(document.getElementById('sideB').value);
+
+    if (!isNaN(sideA) && !isNaN(sideB)) {
+      var diagonalLength = Math.sqrt(sideA * 2 + sideB * 2);
+      document.getElementById('result').innerText = 'Diagonal Length: ' + diagonalLength.toFixed(2);
+    } else {
+      document.getElementById('result').innerText = 'Please enter valid numeric values for both sides.';
+    }
+  }
+  // สุ่มตัวเลขในลูกเต๋า ผลลัพธ์ต้องเป็นตัวเลขจำนวณเต็มตั้งแต่ 1-6
+  function rollDice() {
+    var diceResult = Math.floor(Math.random() * 10) + 1;
+    var newParagraph = document.createElement('p');
+    newParagraph.innerText = 'Dice Result: ' + diceResult;
+    var resultContainer = document.getElementById('resultContainer');
+    resultContainer.innerHTML = '';
+    resultContainer.appendChild(newParagraph);
+  }
+  // แปลงจำนวนวันเป็นวินาที
+  function convertDaysToSeconds() {
+    var numberOfDays = parseFloat(document.getElementById('numberOfDays').value);
+    if (!isNaN(numberOfDays)) {
+      var seconds = numberOfDays * 24 * 60 * 60;
+      var newParagraph = document.createElement('p');
+      newParagraph.innerText = 'Result: ' + seconds + ' seconds';
+      var resultCon = document.getElementById('resultCon');
+      resultCon.innerHTML = '';
+      resultCon.appendChild(newParagraph);
+    } else {
+      document.getElementById('resultCon').innerHTML = 'Please enter a valid number.';
+    }
+  }
+  // แปลงอุณภูมิจาก farenheit เป็น celsius
+  function convertToFahrenheit() {
+    var fahrenheit = parseFloat(document.getElementById('fahrenheitInput').value);
+    if (!isNaN(fahrenheit)) {
+      var celsius = (fahrenheit - 32) * (5 / 9);
+      var newParagraph = document.createElement('p');
+      newParagraph.innerText = 'Temperature in Celsius: ' + celsius.toFixed(2) + ' °C';
+      var resultA = document.getElementById('resultA');
+      resultA.innerHTML = '';
+      resultA.appendChild(newParagraph);
+    } else {
+      document.getElementById('resultA').innerHTML = 'Please enter a valid temperature.';
+    }
+  }
+  // คำนวนค่า factorial
+  function calculateFactorial() {
+    var number = parseInt(document.getElementById('numberInput').value);
+    if (!isNaN(number) && number >= 0) {
+      var factorial = 1;
+      for (var i = 2; i <= number; i++) {
+        factorial *= i;
+      }
+      var newParagraph = document.createElement('p');
+      newParagraph.innerText = 'Factorial of ' + number + ' is: ' + factorial;
+      var resultf = document.getElementById('resultf');
+      resultf.innerHTML = '';
+      resultf.appendChild(newParagraph);
+    } else {
+      document.getElementById('resultf').innerHTML = 'Please enter a valid non-negative integer.';
+    }
+  }
+</script>
+
+
+<script>
+  //document.getElementById("demo").innerHTML = "Hello World";
+
+  function printAlphabets() {
+  // สร้างตัวแปรเพื่อเก็บตัวอักษร A-Z
+  const alphabets = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+  // ใช้ forEach เพื่อวนลูปผ่านทุกตัวอักษร
+  alphabets.split('').forEach((alphabet, index) => {
+    // ใช้ setTimeout เพื่อกำหนดระยะเวลาการแสดงผล
+    setTimeout(() => {
+      document.getElementById("demo").innerHTML = alphabet;
+      console.log(alphabet);
+    }, index * 1000); // 1000 milliseconds = 1 วินาที
+  });
+}
+printAlphabets();
+
+  function myFunction() {
+    document.getElementById("demo2").innerHTML = "Hello World";
+}
+
+  function myFunction2() {
+  // Get the value of the input field with id="numb"
+  let x = document.getElementById("numb").value;
+  // If x is Not a Number or less than one or greater than 10
+  let text;
+  if (isNaN(x) || x < 1 || x > 10) {
+    text = "Input not valid";
+  } else {
+    text = "Input OK";
+  }
+  document.getElementById("demo3").innerHTML = text;
+}
+</script>
+
+<!-- --------------------------------Chart Js---------------------------------- -->
+
+<div class="box2">
+  <canvas id="myChart"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Liverpool', 'Arsenal', 'Aston Villa', 'Manchester City', 'Tottenham Hotspur', 'Manchester United', 'Newcastle United'],
+      datasets: [{
+        label: 'คะแนนผลบอลพรีเมียร์ลีก',
+        data: [37, 36, 35, 33, 30, 27, 26],
+        backgroundColor: [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(255, 159, 64, 0.2)',
+      'rgba(255, 205, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(153, 102, 255, 0.2)',
+      'rgba(201, 203, 207, 0.2)'
+    ],
+    borderColor: [
+      'rgb(255, 99, 132)',
+      'rgb(255, 159, 64)',
+      'rgb(255, 205, 86)',
+      'rgb(75, 192, 192)',
+      'rgb(54, 162, 235)',
+      'rgb(153, 102, 255)',
+      'rgb(201, 203, 207)'
+    ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+</div>
+
+
+<!-- --------------------------------Chart 2------------------------------>
+<div class="box2">
+  <canvas id="myChart2"></canvas>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <script>
+    const xValues = ["เพลงลูกทุ่ง", "เพลงเพื่อชีวิต", "เพลงป๊อป", "เพลงร๊อค", "เพลงลูกกรุง", "เพลงคลาสสิก", "เพลงแจ๊ส", "เพลงแร๊ป ฮิปฮ๊อป", "เพลงบลู"];
+    const yValues = [62.96, 29.76, 26.56, 17.04, 15.76, 8.80, 7.12, 4.56, 2.48];
+    const barColors = [
+      "#ff0000",
+      "#0000ff",
+      "#ee82ee",
+      "#ffa500",
+      "#6a5acd",
+      "#00faff",
+      "#10ff5a",
+      "#c5c6d7",
+      "#14f5a3",
+    ];
+    
+    new Chart("myChart2", {
+      type: "pie",
+      data: {
+        labels: xValues,
+        datasets: [{
+          backgroundColor: barColors,
+          data: yValues
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          text: "แนวเพลงที่คนชอบฟัง"
+        }
+      }
+    });
+    
+    </script>
+</script>
+</div>
+
+
+
+<footer class="w3-center w3-black w3-padding-16">
+  <p>By NATTAKIT PHAYAO.</p>
+  <a href="https://www.facebook.com/profile.php?id=100025068803816"><i class="fa fa-facebook-official w3-hover-opacity"></i></a>
+  <a href="https://www.instagram.com/zj_xxvii/"><i class="fa fa-instagram w3-hover-opacity"></i></a>
+</footer>
+
+</body>
+</html>
